@@ -18,6 +18,7 @@ var acceptedParams = {
   touchSensitivity: true,
   scrollCb: true,
   touchCb: true,
+  dragCb: true,
   scrollPreventDefault: true,
   touchPreventDefault: true
 };
@@ -52,7 +53,8 @@ function ScrollSwipe(opts) {
 
   this.startTouchEvent = null;
   this.latestTouchEvent = null;
-  this.latestTouch = null;
+  this.latestTouchX = null;
+  this.latestTouchY = null;
 
   this.startScrollEvent = null;
   this.latestScrollEvent = null;
@@ -145,9 +147,16 @@ ScrollSwipe.prototype.touchMove = function touchMove(e) {
   var x = changedTouches.clientX;
   var y = changedTouches.clientY;
 
+  var deltaX = x - this.latestTouchX;
+  var deltaY = y - this.latestTouchY;
+
   this.startTouchEvent = e;
   this.addXTouch(x);
   this.addYTouch(y);
+
+  if (this.dragCb) {
+    this.dragCb({ x: deltaX, y: deltaY });
+  }
 };
 
 ScrollSwipe.prototype.touchEnd = function touchEnd(e) {
@@ -241,7 +250,7 @@ ScrollSwipe.prototype.addXTouch = function addTouch(touch) {
     return this;
   }
 
-  this.latestTouch = touch;
+  this.latestTouchX = touch;
   this.touchArrX.push(touch);
 
   return this;
@@ -252,7 +261,7 @@ ScrollSwipe.prototype.addYTouch = function addTouch(touch) {
     return this;
   }
 
-  this.latestTouch = touch;
+  this.latestTouchY = touch;
   this.touchArrY.push(touch);
 
   return this;

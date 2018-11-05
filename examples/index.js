@@ -5,9 +5,10 @@ var ss = new ScrollSwipe({
 	scrollSensitivity: 0, // the lower the number, the more sensitive
 	touchSensitivity: 0, // the lower the number, the more senitive,
 	scrollPreventDefault: true, // prevent default option for scroll events
-	touchPreventDefault: true, // prevent default option for touch events
+	touchPreventDefault: false, // prevent default option for touch events
 	scrollCb: scrollCb,
-	touchCb: touchCb
+	touchCb: touchCb,
+	dragCb: dragCb
 });
 
 var intentMap = {
@@ -36,6 +37,10 @@ function scrollCb(data) {
 
 	//perform actions such as animations/transitions or just plain funciton calls, then set the scrollPending back to false to listen for the next event
 	ss.listen();
+}
+
+function dragCb(data) {
+	console.log('drag data', data);
 }
 
 function touchCb(data) {

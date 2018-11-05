@@ -29,7 +29,8 @@ var ss = new ScrollSwipe({
 	scrollPreventDefault: true, // prevent default option for scroll events
 	touchPreventDefault: true, // prevent default option for touch events
 	scrollCb: scrollCb,  // The action you wish to perform when a scroll reacts (details below)
-	touchCb: touchCb // The action you wish to perform when a touch reacts (details below)
+	touchCb: touchCb, // The action you wish to perform when a touch reacts (details below)
+	dragCb: dragCb // gives you the delta x/y of touch events. You'll also need touchCb to be set.
 });
 ```
 
@@ -55,6 +56,16 @@ function scrollCb(data) {
 function touchCb(data) {
     //the exact same behavior as scrollCb ^^ applies
     ss.listen();
+}
+
+/**
+ * @param  {Object} data - returns the following
+ * x - delta X
+ * y - delta Y
+ */
+function dragCb(data) {
+	// same behavior, except different data
+	// and you shouldn't call ss.listen(), else touchCb won't fire.
 }
 
 // kill scroll event listeners for an instance with ss.killScroll();

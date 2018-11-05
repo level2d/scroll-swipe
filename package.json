@@ -1,5 +1,5 @@
 {
-  "name": "scroll-swipe",
+  "name": "@poeticode/scroll-swipe",
   "version": "0.0.17",
   "description": "a lightweight Events API for detecting scroll and touch events based on custom sensitivity",
   "main": "./dist/ScrollSwipe.js",
