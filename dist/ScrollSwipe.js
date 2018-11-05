@@ -147,8 +147,8 @@ ScrollSwipe.prototype.touchMove = function touchMove(e) {
   var x = changedTouches.clientX;
   var y = changedTouches.clientY;
 
-  var deltaX = x - this.latestTouchX;
-  var deltaY = y - this.latestTouchY;
+  var deltaX = this.latestTouchX != null ? x - this.latestTouchX : 0;
+  var deltaY = this.latestTouchY != null ? y - this.latestTouchY : 0;
 
   this.startTouchEvent = e;
   this.addXTouch(x);
