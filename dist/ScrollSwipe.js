@@ -270,6 +270,8 @@ ScrollSwipe.prototype.addYTouch = function addTouch(touch) {
 ScrollSwipe.prototype.resetTouches = function resetTouches() {
   this.touchArrX = [];
   this.touchArrY = [];
+  this.latestTouchX = null;
+  this.latestTouchY = null;
   return this;
 };
 
